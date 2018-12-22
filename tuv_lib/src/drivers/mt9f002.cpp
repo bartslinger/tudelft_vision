@@ -42,7 +42,7 @@ MT9F002::MT9F002(I2CBus *i2c_bus, enum interfaces interface, struct pll_config_t
 
     // Default values
     target_exposure = 10;
-    target_fps = 30;
+    target_fps = 10;
 
     // Default configuration
     res_config.offset_x       = 114;

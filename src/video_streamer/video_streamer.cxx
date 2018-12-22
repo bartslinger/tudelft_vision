@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 {
   PLATFORM target;
 #if defined(PLATFORM_Bebop)
-  EncoderH264 encoder(1920, 1080, 30, 4000000);
+  EncoderH264 encoder(1920, 1080, 10, 100000);
 #else
   EncoderJPEG encoder;
 #endif
