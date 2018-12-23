@@ -1,0 +1,6 @@
+[
+    {
+        "name": "Bebop",
+        "toolchainFile": "toolchains/bebop-toolchain.cmake"
+    }
+]

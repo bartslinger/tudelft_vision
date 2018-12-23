@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.6)
 project (video_streamer CXX)
 
 set(SUPPORTED_PLATFORMS "Linux" "Bebop")
-find_package(JPEG)
+find_package(JPEG REQUIRED)
 
 if (JPEG_FOUND)
     include_directories(${JPEG_INCLUDE_DIR})
