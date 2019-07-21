@@ -27,21 +27,33 @@
 
 int main(int argc, char *argv[])
 {
-  PLATFORM target;
-#if defined(PLATFORM_Bebop)
-  EncoderH264 encoder(1920, 1080, 30, 4000000);
-#else
-  EncoderJPEG encoder;
-#endif
-
   // determine target from number of cmdline arguments
   std::string udp_target = UDP_TARGET;
-  if (argc == 2) {
+  unsigned int port = 5000;
+  if (argc >= 2) {
     udp_target = std::string(argv[1]);
   }
   std::cout << "Target: " << udp_target << std::endl;
 
-  UDPSocket::Ptr udp = std::make_shared<UDPSocket>(udp_target, 5000);
+  if (argc >= 3) {
+     port = atoi(argv[2]);
+     std::cout << "Port: " << port << std::endl;
+  }
+
+  int bitrate = 4000000;
+  if (argc >=4) {
+      bitrate = atoi(argv[3]) * 1000;
+      std::cout << "Bitrate: " << bitrate << std::endl;
+  }
+
+  PLATFORM target;
+#if defined(PLATFORM_Bebop)
+  EncoderH264 encoder(1920, 1080, 30, bitrate);
+#else
+  EncoderJPEG encoder;
+#endif
+
+  UDPSocket::Ptr udp = std::make_shared<UDPSocket>(udp_target, port);
   EncoderRTP rtp(udp);
 
   Cam::Ptr cam = target.getCamera(CAMERA_ID);
